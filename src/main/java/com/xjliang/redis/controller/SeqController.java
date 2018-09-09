@@ -14,6 +14,8 @@ public class SeqController {
     @Autowired
     private RedisTemplate redisTemplate;
 
+    private static int tint = 0;
+
     @RequestMapping("getSeqHash/{hkey}/{hstep}")
     public String getSeqHash(HttpServletRequest request,@PathVariable String hkey,@PathVariable String hstep){
         long m = 0L;
@@ -35,4 +37,13 @@ public class SeqController {
         return lstr+"---"+lstep;
     }
 
+    @RequestMapping("/releaseInt")
+    public int getInt(){
+
+        if(tint>0){
+            tint--;
+        }
+        return tint;
+
+    }
 }
